@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express.Router();
 const mongoose = require("mongoose");
+const dateRangeHelper = require("../utils/DateRangeHelpers.js");
 
 const { Expense } = require("../Models/Expense.js");
 const {
@@ -11,17 +12,9 @@ const {
 } = require("date-fns");
 
 app.get("/getMontlyData", async (req, res) => {
-  // weekly or Monthly
-  const now = new Date();
-  if (req.query.dateRange == "Weekly") {
-    var firstDayOfMonth = startOfWeek(now);
-    var lastDayOfMonth = endOfWeek(now);
-  } else {
-    firstDayOfMonth = startOfMonth(now);
-    lastDayOfMonth = endOfMonth(now);
-  }
-
-  console.log(req.query.userId);
+  let dateRanges = dateRangeHelper(req.query.dateRange);
+  let firstDayOfMonth = dateRanges.firstDayOfMonth;
+  let lastDayOfMonth = dateRanges.lastDayOfMonth;
 
   //query
   const result = await Expense.aggregate([
@@ -62,14 +55,10 @@ app.get("/getMontlyData", async (req, res) => {
 
 app.get("/getMonthlyIncome", async (req, res) => {
   // weekly or Monthly
-  const now = new Date();
-  if (req.query.dateRange == "Weekly") {
-    var firstDayOfMonth = startOfWeek(now);
-    var lastDayOfMonth = endOfWeek(now);
-  } else {
-    firstDayOfMonth = startOfMonth(now);
-    lastDayOfMonth = endOfMonth(now);
-  }
+
+  let dateRanges = dateRangeHelper(req.query.dateRange);
+  let firstDayOfMonth = dateRanges.firstDayOfMonth;
+  let lastDayOfMonth = dateRanges.lastDayOfMonth;
 
   console.log(req.query.userId);
 

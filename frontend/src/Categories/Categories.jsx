@@ -37,6 +37,7 @@ const CategoryList = (props) => {
           src={`/${props.item.icon}`}
           width={25}
           height={25}
+          alt=""
           className="mr-5 mt-5"
         />
 
@@ -49,7 +50,7 @@ const CategoryList = (props) => {
 function Categories() {
   const [categories, setCategories] = useState([]);
   const [incomeCategories, setIncomeCategories] = useState([]);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const fetchCategories = async () => {
     const token = Cookies.get("token");
@@ -114,7 +115,10 @@ function Categories() {
         <div className="md:col-span-2 mt-28 md:mt-0  ml-10 md:ml-0 mb-28">
           <div className="flex justify-between">
             <h1 className="font-bold text-lg mb-10">Categories</h1>
-            <button onClick={()=>navigate('/addCategory')} className="text-sm bg-green-500 text-white px-5 rounded h-10 m-5 border border-black hover:bg-green-950">
+            <button
+              onClick={() => navigate("/addCategory")}
+              className="text-sm bg-green-500 text-white px-5 rounded h-10 m-5 border border-black hover:bg-green-950"
+            >
               Add
             </button>
           </div>

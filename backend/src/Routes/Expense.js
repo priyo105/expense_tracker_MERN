@@ -25,27 +25,28 @@ app.get("/expense/:id", async (req, res) => {
   }
 });
 
+app.get("/expenses", async (req, res) => {
+  let expense = await Expense.find({ userId: req.query.userId })
+    .populate("category")
+    .sort({ userSpentDate: -1 });
 
-app.get("/expenses",async(req,res)=>{
-
-  let expense=await Expense.find({userId:req.query.userId}).populate('category').sort({userSpentDate:-1}); 
-
-  if(expense){
-    res.status(200).send(expense)
-  }else{
-    res.status(404).send({message:"Not Found"})
+  if (expense) {
+    res.status(200).send(expense);
+  } else {
+    res.status(404).send({ message: "Not Found" });
   }
-})
+});
 
-
-app.get("/recentTransactions",async(req,res)=>{
-
-  let expense=await Expense.find({userId:req.query.userId}).populate('category').sort({userSpentDate:-1}).limit(5); 
-  if(expense){
-    res.status(200).send(expense)
-  }else{
-    res.status(404).send({message:"Not Found"})
+app.get("/recentTransactions", async (req, res) => {
+  let expense = await Expense.find({ userId: req.query.userId })
+    .populate("category")
+    .sort({ userSpentDate: -1 })
+    .limit(5);
+  if (expense) {
+    res.status(200).send(expense);
+  } else {
+    res.status(404).send({ message: "Not Found" });
   }
-})
+});
 
 module.exports = app;

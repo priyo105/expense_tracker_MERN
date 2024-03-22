@@ -10,6 +10,7 @@ import RightSideContnent from "./RightSideContnent";
 
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserId } from "../redux/LoginInfoSlice.js";
+import { updateDateRange } from "../redux/DashBoardSelectedDateRangeSlice.js";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -23,6 +24,8 @@ export default function Home() {
   const queryParams = new URLSearchParams(location.search);
   const ID = queryParams.get("data");
 
+  //updating redux
+  dispatch(updateDateRange("This Month"));
   dispatch(updateUserId(ID));
 
   return (

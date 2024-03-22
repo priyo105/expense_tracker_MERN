@@ -35,13 +35,14 @@ const options = [
   },
 ];
 
-function DateRangePickerDropDownSelect({setDateRangeSelector}) {
+function DateRangePickerDropDownSelect({ setDateRangeSelector }) {
   return (
     <div>
       <Select
         options={options}
         labelField="name"
-        style={{width:200}}
+        style={{ width: 200, color: "black" }}
+        placeholder="Select Dateframe"
         valueField="id"
         onChange={(values) => setDateRangeSelector(values[0].name)}
       />
