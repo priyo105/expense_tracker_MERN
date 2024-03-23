@@ -7,7 +7,8 @@ function MobileToggleSidebar({ toggle }) {
   return (
     <div>
       <div
-        className={toggle ? "h-[1500px]  w-60  z-50 fixed bg-white " : "hidden"} >
+        className={toggle ? "h-[1500px]  w-60  z-50 fixed bg-white " : "hidden"}
+      >
         <div className="ml-10">
           <Link to={`/home?data=${userId}`}>
             <p className="font-poppins text-[12px] mt-20">Home</p>
@@ -29,9 +30,9 @@ function MobileToggleSidebar({ toggle }) {
               Reports And Analytics
             </p>
           </Link>
-          <Link to="/predictions">
+          {/* <Link to="/predictions">
             <p className="font-poppins text-[12px] mt-10">Future Predictions</p>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

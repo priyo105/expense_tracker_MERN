@@ -44,7 +44,7 @@ export default function Analytics() {
             </h1>
 
             <div className="w-full h-full">
-              <CategoryWiseBarChart  selectedDateRange={rangeSelect}/>
+              <CategoryWiseBarChart selectedDateRange={rangeSelect} />
             </div>
           </div>
 

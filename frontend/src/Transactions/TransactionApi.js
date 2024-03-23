@@ -6,17 +6,28 @@ import { APIURL } from "../Constants/Api";
 const getTransactions = async (
   userId,
   filterCategory,
-  setTransactionsByDate
+  setTransactionsByDate,
+  startDate,
+  endDate
 ) => {
   const token = Cookies.get("token");
   try {
-    const response = await fetch(APIURL + "/expenses?userId=" + userId, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      APIURL +
+        "/expenses?userId=" +
+        userId +
+        "&startDate=" +
+        startDate +
+        "&endDate=" +
+        endDate,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -31,6 +42,8 @@ const getTransactions = async (
     if (filterCategory.length === 0) {
       filteredArray = result;
     }
+
+    console.log(startDate);
 
     // Organize transactions by date
     const organizedTransactions = {};

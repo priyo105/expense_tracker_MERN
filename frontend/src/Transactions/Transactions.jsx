@@ -13,9 +13,20 @@ export default function Transactions() {
     (state) => state.categoryFilter.categories
   );
 
+  const startDate = useSelector(
+    (state) => state.dateFilter.dateRange.startDate
+  );
+  const endDate = useSelector((state) => state.dateFilter.dateRange.endDate);
+
   useEffect(() => {
-    getTransactions(userId, filterCategory, setTransactionsByDate);
-  }, [userId, filterCategory]);
+    getTransactions(
+      userId,
+      filterCategory,
+      setTransactionsByDate,
+      startDate,
+      endDate
+    );
+  }, [userId, filterCategory, startDate]);
 
   return (
     <div>

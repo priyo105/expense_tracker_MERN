@@ -2,13 +2,12 @@ import React, { PureComponent, useEffect } from "react";
 import { APIURL } from "../Constants/Api";
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import {
   BarChart,
   Bar,
   Cell,
-  Rectangle,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -38,38 +37,8 @@ const COLORS = [
   "#FFEB3B",
   "#8BC34A",
 ];
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-  },
-];
 
-export default function CategoryWiseBarChart({selectedDateRange}) {
+export default function CategoryWiseBarChart({ selectedDateRange }) {
   const [categories, setCategories] = useState([]);
   const [formattedData, setFormattedData] = useState([]);
   const userId = useSelector((state) => state.loginInfo.userid);
@@ -80,11 +49,13 @@ export default function CategoryWiseBarChart({selectedDateRange}) {
   }, [selectedDateRange]);
 
   const fetchChatData = async (token) => {
-
     try {
       const response = await fetch(
         APIURL +
-          "/analytics/getCategoryWiseData?category=Shopping&dateRange="+selectedDateRange+"&userId="+userId,
+          "/analytics/getCategoryWiseData?category=Shopping&dateRange=" +
+          selectedDateRange +
+          "&userId=" +
+          userId,
         {
           method: "GET",
 
@@ -107,8 +78,7 @@ export default function CategoryWiseBarChart({selectedDateRange}) {
         uv: item.totalSpending,
       }));
       setFormattedData(formattedData);
-    console.log(formattedData)
-
+      console.log(formattedData);
     } catch (error) {
       console.log(error);
     }

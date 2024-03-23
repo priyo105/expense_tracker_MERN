@@ -5,32 +5,26 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-
-
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
-export default function PieChartGraph({selectedDateRange}) {
+export default function PieChartGraph({ selectedDateRange }) {
   const [categories, setCategories] = useState([]);
-  const [formattedData,setFormattedData]=useState([]);
+  const [formattedData, setFormattedData] = useState([]);
   const userId = useSelector((state) => state.loginInfo.userid);
-  console.log(userId)
-  
-  console.log(selectedDateRange)
-
-
-
 
   useEffect(() => {
     const token = Cookies.get("token");
-    fetchChatData(token,selectedDateRange);
+    fetchChatData(token, selectedDateRange);
   }, [selectedDateRange]);
 
   const fetchChatData = async (token) => {
-
     try {
       const response = await fetch(
         APIURL +
-          "/analytics/getCategoryWiseData?category=Shopping&dateRange="+selectedDateRange+"&userId="+userId,
+          "/analytics/getCategoryWiseData?category=Shopping&dateRange=" +
+          selectedDateRange +
+          "&userId=" +
+          userId,
         {
           method: "GET",
 
@@ -53,8 +47,7 @@ export default function PieChartGraph({selectedDateRange}) {
         value: item.totalSpending,
       }));
       setFormattedData(formattedData);
-    console.log(formattedData)
-
+      console.log(formattedData);
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +55,7 @@ export default function PieChartGraph({selectedDateRange}) {
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={100} height={100}> 
+      <PieChart width={100} height={100}>
         <Pie
           data={formattedData}
           cx="50%"

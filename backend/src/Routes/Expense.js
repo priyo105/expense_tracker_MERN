@@ -26,7 +26,19 @@ app.get("/expense/:id", async (req, res) => {
 });
 
 app.get("/expenses", async (req, res) => {
-  let expense = await Expense.find({ userId: req.query.userId })
+  const { userId, startDate, endDate } = req.query;
+
+  let query = { userId };
+
+  //date filter
+  if (startDate !== "undefined" && endDate !== "undefined") {
+    query.userSpentDate = {
+      $gte: new Date(startDate),
+      $lte: new Date(endDate),
+    };
+  }
+
+  let expense = await Expense.find(query)
     .populate("category")
     .sort({ userSpentDate: -1 });
 

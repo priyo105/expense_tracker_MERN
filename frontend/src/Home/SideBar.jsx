@@ -1,17 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 
 function SideBar() {
-
-
-  const userId = useSelector((state) => state.loginInfo.userid)
+  const userId = useSelector((state) => state.loginInfo.userid);
 
   return (
     <div>
       <div className="h-96 hidden md:block md:col-span-1 md:ml-10 lg:ml-28">
-        
-      <Link to={`/home?data=${userId}`}>
+        <Link to={`/home?data=${userId}`}>
           <p className="font-poppins text-[12px] mt-10 w-28 hover:bg-slate-200">
             Home
           </p>
@@ -47,11 +44,11 @@ function SideBar() {
           </p>
         </Link>
 
-        <Link to="/future-predictions">
+        {/* <Link to="/future-predictions">
           <p className="font-poppins text-[12px] mt-10 w-28 hover:bg-slate-200">
             Future Predictions
           </p>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

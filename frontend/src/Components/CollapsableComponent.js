@@ -5,6 +5,7 @@ function CollapsableComponent({ title, Children }) {
   return (
     <div>
       <Collapsible
+        open
         triggerStyle={{ fontWeight: "bold" }}
         trigger={
           <div className="flex flex-row">

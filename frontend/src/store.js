@@ -10,5 +10,6 @@ export const store = configureStore({
     loginInfo: LoginInfoSlice,
     dateRange: DateRangeSlice,
     categoryFilter: CategoryFilterForTransactionSlice,
+    dateFilter: DateRangeSlice,
   },
 });
