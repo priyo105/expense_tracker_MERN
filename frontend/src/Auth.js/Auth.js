@@ -6,6 +6,7 @@ import { AiFillMail } from "react-icons/ai";
 import { FaLock } from "react-icons/fa";
 import BigScreenContent from "./BigScreenContent";
 import { APIURL } from "../Constants/Api";
+import { Link } from "react-router-dom";
 export default function Auth() {
   return (
     <div className="m-10 flex justify-center flex-col">
@@ -21,13 +22,13 @@ export default function Auth() {
             <h1 className="font-mono"> Sign in Using Social Media </h1>
             <p className="mt-20 text-sm mb-5">Google Sign In </p>
 
-            <a href="http://localhost:5000/auth">
+            <a href={APIURL + "/auth"}>
               <GoogleButton />
             </a>
 
             <p className="text-center m-5">OR</p>
             <div className=" w-28 h-16">
-              <a href={APIURL+"/auth/github"}>
+              <a href={APIURL + "/auth/github"}>
                 <GithubButton
                   height={50}
                   width={240}
@@ -67,10 +68,10 @@ export default function Auth() {
               </div>
               <p className="mt-2 text-[12px] " style={{ textAlign: "center" }}>
                 Dont Have Account?{" "}
-                <a href="/" className="text-blue-500">
+                <Link to="/signup" className="text-blue-500">
                   {" "}
                   Sign Up
-                </a>{" "}
+                </Link>{" "}
               </p>
             </div>
           </div>

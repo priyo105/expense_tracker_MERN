@@ -8,13 +8,13 @@ import { updateDateRange } from "../../redux/DashBoardSelectedDateRangeSlice";
 export default function DatrRangeFilter() {
   const [selectedFirstDate, setSelectedFirstDate] = useState("");
   const [seoectEndingDate, setSelectedEndingDate] = useState("");
-  const dispatct = useDispatch();
+  const dispatch = useDispatch();
 
   const handleButtonClick = () => {
     if (selectedFirstDate === "" || seoectEndingDate === "") {
       showToast("Please Select dates");
     } else {
-      dispatct(
+      dispatch(
         updateDateRange({
           startDate: selectedFirstDate,
           endDate: seoectEndingDate,
@@ -23,6 +23,16 @@ export default function DatrRangeFilter() {
     }
   };
 
+  const handleReset = () => {
+    setSelectedFirstDate("");
+    setSelectedEndingDate("");
+    dispatch(
+      updateDateRange({
+        startDate: undefined,
+        endDate: undefined,
+      })
+    );
+  };
   return (
     <div>
       <Toast />
@@ -46,12 +56,20 @@ export default function DatrRangeFilter() {
         />
       </div>
 
-      <button
-        onClick={handleButtonClick}
-        className="bg-black text-white p-2 rounded-md mt-5 ml-10"
-      >
-        Apply
-      </button>
+      <div className="flex flex-row">
+        <button
+          onClick={handleButtonClick}
+          className="bg-green-500 text-white p-3 rounded-lg mt-5 ml-10"
+        >
+          Apply
+        </button>
+        <button
+          onClick={handleReset}
+          className="bg-red-500 text-white p-3 rounded-lg mt-5 ml-10"
+        >
+          Reset
+        </button>
+      </div>
     </div>
   );
 }
