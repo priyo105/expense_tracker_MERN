@@ -5,7 +5,6 @@ const express = require("express");
 const app = express.Router();
 const bcrypt = require("bcryptjs");
 const { User } = require("../Models/User.js");
-const { use } = require("passport");
 
 app.post("/auth/signup", async (req, res) => {
   //mongo insert
