@@ -56,9 +56,7 @@ export default function Home() {
 
           {/* {!loading && <Dashboard />} */}
         </div>
-        <div className=" md:col-span-1 ">
-          <RightSideContnent />
-        </div>
+        <div className=" md:col-span-1 ">{/* <RightSideContnent /> */}</div>
       </div>
     </div>
   );
