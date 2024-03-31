@@ -32,7 +32,7 @@ app.use(express.json());
 // app.options("*", cors());
 
 app.use(morgan("tiny"));
-app.options("*", cors(corsOptions));
+// app.options("*", cors(corsOptions));
 
 //Routes
 
