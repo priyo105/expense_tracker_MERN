@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "https://expense-tracker-mern-74at.onrender.com/"
+  to = "https://wise-expensetracker.netlify.app/"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"

@@ -3,24 +3,26 @@ import { APIURL } from "../../Constants/Api";
 
 export default async function getDashboardCost(category, userId, dateRange) {
   const token = Cookies.get("token");
-  console.log(dateRange);
+  console.log("baaalertoken", token);
+
+  const URL =
+    APIURL +
+    "/dashboard/getMontlyData?category=" +
+    category +
+    "&dateRange=" +
+    dateRange +
+    "&userId=" +
+    userId;
+
+  console.log(URL);
   try {
-    const response = await fetch(
-      APIURL +
-        "/dashboard/getMontlyData?category=" +
-        category +
-        "&dateRange=" +
-        dateRange +
-        "&userId=" +
-        userId,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await fetch(URL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     if (!response.ok) {
       throw new Error("Network response was not ok");

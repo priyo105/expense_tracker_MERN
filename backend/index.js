@@ -25,22 +25,21 @@ const corsOptions = {
 app.use("/uploads", express.static("uploads"));
 
 app.use(express.json());
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors());
 app.use(morgan("tiny"));
 app.options("*", cors(corsOptions));
 
 //Routes
 
 app.use("/", NormalAuthinticate);
-
 app.use("/", GoogleAuthinticate);
 app.use("/", GithubAuthinticate);
+app.use("/dashboard", DashBoard);
 
 app.use(Auth);
 
 app.use("", Category);
 app.use("", Expense);
-app.use("/dashboard", DashBoard);
 app.use("/analytics", Analytics);
 app.get("/test", (req, res) => {
   res.send({
