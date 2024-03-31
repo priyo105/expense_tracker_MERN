@@ -29,6 +29,7 @@ app.use(
     origin: "*",
     allowedHeaders: true,
     preflightContinue: true,
+    credentials: true,
   })
 );
 
