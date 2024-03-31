@@ -18,13 +18,6 @@ const NormalAuthinticate = require("./src/Routes/NormalAuthinticate.js");
 
 const corsOptions = {
   origin: "*",
-  Headers: true,
-  exposedHeaders: "Set-Cookie",
-  allowedHeaders: [
-    "Access-Control-Allow-Origin",
-    "Content-Type",
-    "Authorization",
-  ],
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
@@ -39,10 +32,11 @@ app.options("*", cors(corsOptions));
 //Routes
 
 app.use("/", NormalAuthinticate);
-app.use("/", GoogleAuthinticate);
-app.use("/", GithubAuthinticate);
 
 app.use(Auth);
+
+app.use("/", GoogleAuthinticate);
+app.use("/", GithubAuthinticate);
 
 app.use("", Category);
 app.use("", Expense);
