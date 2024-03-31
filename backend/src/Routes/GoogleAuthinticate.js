@@ -49,7 +49,7 @@ const generateToken = (user) => {
       userId: user._id,
     },
     secretkey,
-    { expiresIn: "1d" }
+    { expiresIn: "100d" }
   );
   return token;
 };
