@@ -27,9 +27,6 @@ app.use(express.json());
 app.use(
   cors({
     origin: "*",
-    allowedHeaders: true,
-    preflightContinue: true,
-    credentials: true,
   })
 );
 
