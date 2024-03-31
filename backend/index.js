@@ -24,11 +24,11 @@ app.use("/uploads", express.static("uploads"));
 
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: "https://wise-expensetracker.netlify.app",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://wise-expensetracker.netlify.app",
+//   })
+// );
 app.options("*", cors());
 
 app.use(morgan("tiny"));
