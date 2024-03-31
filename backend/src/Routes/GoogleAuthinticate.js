@@ -87,7 +87,7 @@ app.get("/auth/callback/success", async (req, res) => {
     let token = await generateToken(userAlreadyExists);
 
     res.cookie("token", token, {
-      domain: ".expense-tracker-mern-74at.onrender.com",
+      domain: "https://expense-tracker-mern-74at.onrender.com",
       path: "/",
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // Cookie expires in 24 hours
       httpOnly: true, // Prevent client-side access to the cookie
