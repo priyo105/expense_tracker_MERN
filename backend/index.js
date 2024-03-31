@@ -25,7 +25,7 @@ const corsOptions = {
 app.use("/uploads", express.static("uploads"));
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "*", credentials: true }));
 app.use(morgan("tiny"));
 app.options("*", cors(corsOptions));
 
