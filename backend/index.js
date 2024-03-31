@@ -29,7 +29,7 @@ app.use(express.json());
 //     origin: "https://wise-expensetracker.netlify.app",
 //   })
 // );
-app.options("*", cors());
+// app.options("*", cors());
 
 app.use(morgan("tiny"));
 app.options("*", cors(corsOptions));
