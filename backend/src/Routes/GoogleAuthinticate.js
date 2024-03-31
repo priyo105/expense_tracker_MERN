@@ -43,29 +43,17 @@ app.get(
 );
 
 const generateToken = (user) => {
-  try {
-    let secretkey = process.env.secret;
-    if (!secretkey) {
-      throw new Error("Secret key is missing.");
-    }
-
-    if (!user || !user._id) {
-      throw new Error("Invalid user object.");
-    }
-
-    let token = jwt.sign(
-      {
-        userId: user._id,
-      },
-      secretkey,
-      { expiresIn: "1d" }
-    );
-
-    return token;
-  } catch (err) {
-    console.error("Error generating token:", err);
-    return null;
-  }
+  console.log(user);
+  let secretkey = process.env.secret;
+  let token = jwt.sign(
+    {
+      userId: user._id,
+    },
+    secretkey,
+    { expiresIn: "1d" }
+  );
+  console.log(token);
+  return token;
 };
 
 // Success
