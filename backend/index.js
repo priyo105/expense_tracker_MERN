@@ -24,7 +24,6 @@ app.use("/uploads", express.static("uploads"));
 
 app.use(express.json());
 app.use(cors());
-app.use(allowCors());
 app.use(morgan("tiny"));
 app.options("*", cors(corsOptions));
 
