@@ -22,9 +22,9 @@ export default function Home() {
   //get ID from URL
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const xToken = new URLSearchParams(location.search).get("token");
+  const token = new URLSearchParams(window.location.search).get("token");
 
-  console.log(xToken);
+  console.log(token);
   const ID = queryParams.get("data");
 
   //updating redux

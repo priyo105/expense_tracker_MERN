@@ -74,7 +74,6 @@ app.get("/auth/callback/success", async (req, res) => {
     };
     userdata.passwordHash = await bcrypt.hashSync("1234", 10); //hashing the password
     let user = new User(userdata);
-    let token = await generateToken(user);
     await user
       .save()
       .then((user) => {
@@ -92,6 +91,17 @@ app.get("/auth/callback/success", async (req, res) => {
       process.env.FRONTEND_URL + "/home?data=" + userAlreadyExists._id
     );
     // res.send(userAlreadyExists)
+  }
+});
+
+app.post("/getToken", async (req, res) => {
+  let userId = req.body.userId;
+  let token = await generateToken({ _id: userId });
+
+  try {
+    res.status(200).send({ token: token });
+  } catch (e) {
+    res.status(400).send({ error: e });
   }
 });
 
