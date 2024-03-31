@@ -80,7 +80,7 @@ app.get("/auth/callback/success", async (req, res) => {
       .then((user) => {
         console.log("data", user);
         res.cookie("token", token);
-        res.redirect(process.env.FRONTEND_URL + "home?data=" + user._id);
+        res.redirect(process.env.FRONTEND_URL + "/home?data=" + user._id);
       })
       .catch((e) => res.send(e));
   } else {
