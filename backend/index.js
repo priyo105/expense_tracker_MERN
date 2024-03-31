@@ -18,6 +18,13 @@ const NormalAuthinticate = require("./src/Routes/NormalAuthinticate.js");
 
 const corsOptions = {
   origin: "*",
+  Headers: true,
+  exposedHeaders: "Set-Cookie",
+  allowedHeaders: [
+    "Access-Control-Allow-Origin",
+    "Content-Type",
+    "Authorization",
+  ],
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
