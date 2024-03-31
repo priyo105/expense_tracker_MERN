@@ -22,7 +22,8 @@ export default function Home() {
   //get ID from URL
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const xToken = location.state?.headers["token"];
+  const xToken = new URLSearchParams(location.search).get("token");
+
   console.log(xToken);
   const ID = queryParams.get("data");
 
