@@ -94,7 +94,7 @@ app.get("/auth/callback/success", async (req, res) => {
   }
 });
 
-app.post("/getToken", async (req, res) => {
+app.post("/auth/getToken", async (req, res) => {
   let userId = req.body.userId;
   let token = await generateToken({ _id: userId });
 
