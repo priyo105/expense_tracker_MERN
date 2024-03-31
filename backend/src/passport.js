@@ -1,5 +1,4 @@
 const passport = require("passport");
-const session = require("express-session");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 require("dotenv/config");
 

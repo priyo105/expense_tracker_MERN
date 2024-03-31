@@ -8,7 +8,7 @@ import RightSideContnent from "./RightSideContnent";
 
 //importing context
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateUserId } from "../redux/LoginInfoSlice.js";
 import { updateDateRange } from "../redux/DashBoardSelectedDateRangeSlice.js";
 
