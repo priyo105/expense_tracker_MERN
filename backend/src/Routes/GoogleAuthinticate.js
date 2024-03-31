@@ -89,7 +89,11 @@ app.get("/auth/callback/success", async (req, res) => {
     res.set("token", token);
 
     res.redirect(
-      process.env.FRONTEND_URL + "/home?data=" + userAlreadyExists._id
+      process.env.FRONTEND_URL +
+        "/home?data=" +
+        userAlreadyExists._id +
+        "&token=" +
+        token
     );
     // res.send(userAlreadyExists)
   }
