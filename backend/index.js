@@ -39,11 +39,10 @@ app.options("*", cors(corsOptions));
 //Routes
 
 app.use("/", NormalAuthinticate);
-
-app.use(Auth);
-
 app.use("/", GoogleAuthinticate);
 app.use("/", GithubAuthinticate);
+
+app.use(Auth);
 
 app.use("", Category);
 app.use("", Expense);
