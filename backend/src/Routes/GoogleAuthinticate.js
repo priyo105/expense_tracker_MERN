@@ -43,15 +43,29 @@ app.get(
 );
 
 const generateToken = (user) => {
-  let secretkey = process.env.secret;
-  let token = jwt.sign(
-    {
-      userId: user._id,
-    },
-    secretkey,
-    { expiresIn: "100d" }
-  );
-  return token;
+  try {
+    let secretkey = process.env.secret;
+    if (!secretkey) {
+      throw new Error("Secret key is missing.");
+    }
+
+    if (!user || !user._id) {
+      throw new Error("Invalid user object.");
+    }
+
+    let token = jwt.sign(
+      {
+        userId: user._id,
+      },
+      secretkey,
+      { expiresIn: "1d" }
+    );
+
+    return token;
+  } catch (err) {
+    console.error("Error generating token:", err);
+    return null;
+  }
 };
 
 // Success
@@ -86,7 +100,7 @@ app.get("/auth/callback/success", async (req, res) => {
 
     res.cookie("token", token);
     res.redirect(
-      process.env.FRONTEND_URL + "home?data=" + userAlreadyExists._id
+      process.env.FRONTEND_URL + "/home?data=" + userAlreadyExists._id
     );
     // res.send(userAlreadyExists)
   }
