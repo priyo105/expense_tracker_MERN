@@ -27,9 +27,10 @@ app.use(express.json());
 app.use(
   cors({
     origin: "*",
+    allowedHeaders: true,
+    preflightContinue: true,
   })
 );
-app.options("*", cors());
 
 app.use(morgan("tiny"));
 
