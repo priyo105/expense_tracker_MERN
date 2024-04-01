@@ -44,7 +44,7 @@ app.post("/auth/signin", async (req, res) => {
     if (!passwordMatch) {
       return res.status(401).send("Incorrect password");
     }
-    res.status(200).send("Sign-in successful!");
+    res.status(200).send(user);
   } catch (error) {
     console.error("Error during sign-in:", error);
     res.status(500).send("Internal Server Error");

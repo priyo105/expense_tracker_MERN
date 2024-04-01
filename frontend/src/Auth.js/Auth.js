@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GoogleButton from "react-google-button";
 import GithubButton from "../Components/GithubButton";
 import InputWithIcons from "../Components/InputWithIcons";
@@ -7,7 +7,15 @@ import { FaLock } from "react-icons/fa";
 import BigScreenContent from "./BigScreenContent";
 import { APIURL } from "../Constants/Api";
 import { Link } from "react-router-dom";
+import { LoginApi } from "../Apis/Login";
+
 export default function Auth() {
+  const LoginPressed = async () => {
+    await LoginApi("adnankamal972@gmail.com", "1234").then((response) => {
+      console.log(response);
+    });
+  };
+
   return (
     <div className="m-10 flex justify-center flex-col">
       <h1 className="font-serif text-center text-xl md:text-2xl xl:text-4xl text-lime-950">
@@ -61,7 +69,10 @@ export default function Auth() {
                 type={"password"}
               />
               <div className="mt-10 items-center flex justify-center">
-                <button className=" bg-black text-white pl-3 pr-3 pt-2 pb-2 rounded-lg">
+                <button
+                  onClick={LoginPressed}
+                  className=" bg-black text-white pl-3 pr-3 pt-2 pb-2 rounded-lg"
+                >
                   {" "}
                   Sign In
                 </button>
