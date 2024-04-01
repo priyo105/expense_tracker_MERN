@@ -93,14 +93,9 @@ app.get("/getMonthlyIncome", async (req, res) => {
 
 app.get("/getMonthlyExpenses", async (req, res) => {
   // weekly or Monthly
-  const now = new Date();
-  if (req.query.dateRange == "Weekly") {
-    var firstDayOfMonth = startOfWeek(now);
-    var lastDayOfMonth = endOfWeek(now);
-  } else {
-    firstDayOfMonth = startOfMonth(now);
-    lastDayOfMonth = endOfMonth(now);
-  }
+  let dateRanges = dateRangeHelper(req.query.dateRange);
+  let firstDayOfMonth = dateRanges.firstDayOfMonth;
+  let lastDayOfMonth = dateRanges.lastDayOfMonth;
 
   console.log(req.query.userId);
   //query

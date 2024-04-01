@@ -54,9 +54,11 @@ export default function Home() {
         <div className=" md:col-span-2">
           {/* //Home Containers */}
 
-          {/* {!loading && <Dashboard />} */}
+          {!loading && <Dashboard />}
         </div>
-        <div className=" md:col-span-1 ">{/* <RightSideContnent /> */}</div>
+        <div className=" md:col-span-1 ">
+          {!loading && <RightSideContnent />}
+        </div>
       </div>
     </div>
   );
