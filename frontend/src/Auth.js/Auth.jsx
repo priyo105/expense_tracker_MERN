@@ -6,17 +6,25 @@ import { AiFillMail } from "react-icons/ai";
 import { FaLock } from "react-icons/fa";
 import BigScreenContent from "./BigScreenContent";
 import { APIURL } from "../Constants/Api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { LoginApi } from "../Apis/Login";
 
 export default function Auth() {
   const [email, setEmail] = useState("asdasd");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const LoginPressed = async () => {
     await LoginApi(email, password).then((response) => {
-      if (response.status == 200) {
-        alert("OK");
+      console.log(response);
+      if (response === "Incorrect password") {
+        alert("Incorrect Password");
+      } else if (response === "User not found") {
+        alert("User Not Found");
+      } else {
+        let data = JSON.parse(response);
+        // console.log(data._id);
+        navigate("/home?data=" + encodeURIComponent(data._id));
       }
     });
   };

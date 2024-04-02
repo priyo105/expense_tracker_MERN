@@ -1,11 +1,28 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useState } from "react";
 import InputWithIcons from "../Components/InputWithIcons";
 import { AiFillMail } from "react-icons/ai";
 import { FaLock } from "react-icons/fa";
 import { FaPersonBooth } from "react-icons/fa";
+import { SignUpApi } from "../Apis/SignUp";
 
 export default function SignUp() {
+  const [fullname, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleButtonClick = () => {
+    if (password.length < 5) {
+      setErrorMessage("password too short .Make at least 5 characters");
+    } else if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match");
+    } else {
+      SignUpApi(fullname, email, password).then(() => {});
+    }
+  };
+
   return (
     <div>
       <h1 className="font-serif mt-20 text-center text-xl md:text-2xl xl:text-4xl text-lime-950">
@@ -29,27 +46,38 @@ export default function SignUp() {
             icon={<FaPersonBooth size={35} />}
             placeholder={"Enter Full Name"}
             type={"text"}
+            onChange={(text) => setFullName(text.target.value)}
           />
 
           <InputWithIcons
             icon={<AiFillMail size={35} />}
             placeholder={"Enter Your Email"}
             type={"email"}
+            onChange={(text) => setEmail(text.target.value)}
           />
           <InputWithIcons
             icon={<FaLock size={35} />}
             placeholder={"Enter Your Password"}
             type={"password"}
+            onChange={(text) => setPassword(text.target.value)}
           />
 
           <InputWithIcons
             icon={<FaLock size={35} />}
             placeholder={"Confirm Your Password"}
             type={"password"}
+            onChange={(text) => setConfirmPassword(text.target.value)}
           />
 
+          <p style={{ color: "red", marginTop: 20, marginLeft: 20 }}>
+            {errorMessage}
+          </p>
+
           <div className="mt-20 ml-40  lg:ml-20 mb-2   ">
-            <button className=" bg-black text-white pl-3 pr-3 pt-2 pb-2 rounded-lg">
+            <button
+              onClick={handleButtonClick}
+              className=" bg-black text-white pl-3 pr-3 pt-2 pb-2 rounded-lg"
+            >
               {" "}
               Sign Up
             </button>

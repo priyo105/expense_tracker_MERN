@@ -1,12 +1,13 @@
 import { APIURL } from "../Constants/Api";
-export const LoginApi = async (email, password) => {
+export const SignUpApi = async (fullname, email, password) => {
   try {
-    const response = await fetch(APIURL + "/auth/signin", {
+    const response = await fetch(APIURL + "/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name: fullname,
         email: email,
         password: password,
       }),

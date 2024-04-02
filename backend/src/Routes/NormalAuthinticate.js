@@ -22,7 +22,7 @@ app.post("/auth/signup", async (req, res) => {
     await user
       .save()
       .then((user) => {
-        res.status(200).send("Registration Successful !", user);
+        res.status(200).send(user);
       })
       .catch((e) => res.send(e));
   } else {
