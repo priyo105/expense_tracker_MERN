@@ -42,9 +42,9 @@ app.post("/auth/signin", async (req, res) => {
       user.passwordHash
     );
     if (!passwordMatch) {
-      return res.status(401).send("Incorrect password");
+      return res.status(401).send({ status: "Incorrect password" });
     }
-    res.status(200).send(user);
+    res.status(200).send(user, { status: "correct" });
   } catch (error) {
     console.error("Error during sign-in:", error);
     res.status(500).send("Internal Server Error");

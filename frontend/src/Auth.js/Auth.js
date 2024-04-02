@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import GoogleButton from "react-google-button";
 import GithubButton from "../Components/GithubButton";
 import InputWithIcons from "../Components/InputWithIcons";
@@ -10,9 +10,14 @@ import { Link } from "react-router-dom";
 import { LoginApi } from "../Apis/Login";
 
 export default function Auth() {
+  const [email, setEmail] = useState("asdasd");
+  const [password, setPassword] = useState("");
+
   const LoginPressed = async () => {
-    await LoginApi("adnankamal972@gmail.com", "1234").then((response) => {
-      console.log(response);
+    await LoginApi(email, password).then((response) => {
+      if (response.status == 200) {
+        alert("OK");
+      }
     });
   };
 
@@ -62,11 +67,13 @@ export default function Auth() {
                 icon={<AiFillMail size={35} />}
                 placeholder={"Enter Your Email"}
                 type={"email"}
+                onChange={(text) => setEmail(text.target.value)}
               />
               <InputWithIcons
                 icon={<FaLock size={35} />}
                 placeholder={"Enter Your Password"}
                 type={"password"}
+                onChange={(text) => setPassword(text.target.value)}
               />
               <div className="mt-10 items-center flex justify-center">
                 <button
